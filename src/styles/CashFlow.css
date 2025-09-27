@@ -1,0 +1,512 @@
+/* Estilos da página de Fluxo de Caixa */
+.cash-flow {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cash-flow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cash-flow-header h1 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Resumo do Saldo */
+.balance-summary {
+  margin-bottom: 30px;
+}
+
+.balance-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.balance-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.balance-icon {
+  font-size: 4rem;
+  margin-right: 24px;
+  opacity: 0.9;
+}
+
+.balance-content h2 {
+  font-size: 1.5rem;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.balance-value {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.balance-value.positive {
+  color: #2ecc71;
+}
+
+.balance-value.negative {
+  color: #e74c3c;
+}
+
+/* Cards de Resumo */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-right: 20px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.income .card-icon {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.expense .card-icon {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.movements .card-icon {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.card-content h3 {
+  color: #2c3e50;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-value {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+.card-count {
+  color: #7f8c8d;
+  font-size: 0.8rem;
+  margin: 4px 0 0 0;
+}
+
+/* Filtros */
+.filters {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filters .form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Formulário de Nova Movimentação */
+.movement-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.movement-form {
+  background: white;
+  border-radius: 12px;
+  padding: 0;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+}
+
+.form-header h2 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #e9ecef;
+}
+
+.movement-form form {
+  padding: 24px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Lista de Movimentações */
+.movements-list {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.movement-date {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.movement-description {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.movement-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.movement-value.income {
+  color: #27ae60;
+}
+
+.movement-value.expense {
+  color: #e74c3c;
+}
+
+.income-row {
+  background: rgba(39, 174, 96, 0.05);
+}
+
+.expense-row {
+  background: rgba(231, 76, 60, 0.05);
+}
+
+/* Estado vazio */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* Status badges personalizados */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge-success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge-danger {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cash-flow-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cash-flow-header h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .balance-card {
+    padding: 24px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .balance-icon {
+    margin-right: 0;
+    margin-bottom: 16px;
+    font-size: 3rem;
+  }
+  
+  .balance-content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .balance-value {
+    font-size: 2.5rem;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .summary-card {
+    padding: 20px;
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+  }
+  
+  .card-value {
+    font-size: 1.5rem;
+  }
+  
+  .filters {
+    flex-direction: column;
+  }
+  
+  .filters .form-group {
+    min-width: auto;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .movement-form {
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .form-header {
+    padding: 20px;
+  }
+  
+  .movement-form form {
+    padding: 20px;
+  }
+  
+  .table {
+    font-size: 0.8rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cash-flow-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .movement-form-overlay {
+    padding: 10px;
+  }
+  
+  .form-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .balance-card {
+    padding: 20px;
+  }
+  
+  .balance-icon {
+    font-size: 2.5rem;
+  }
+  
+  .balance-content h2 {
+    font-size: 1.1rem;
+  }
+  
+  .balance-value {
+    font-size: 2rem;
+  }
+  
+  .summary-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+  }
+  
+  .card-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .card-value {
+    font-size: 1.3rem;
+  }
+  
+  .table {
+    font-size: 0.75rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 6px 4px;
+  }
+  
+  .btn {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Animações */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.balance-summary {
+  animation: slideIn 0.3s ease;
+}
+
+.summary-cards {
+  animation: slideIn 0.4s ease;
+}
+
+.movement-form {
+  animation: slideIn 0.5s ease;
+}
+
+.movements-list {
+  animation: slideIn 0.6s ease;
+}
+
+/* Hover effects */
+.summary-card:hover .card-icon {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background: #f8f9fa;
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Efeitos especiais para o saldo */
+.balance-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
+}
+
+.balance-value {
+  transition: all 0.3s ease;
+}
+
+.balance-card:hover .balance-value {
+  transform: scale(1.05);
+}
